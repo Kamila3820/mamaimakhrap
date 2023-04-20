@@ -15,6 +15,8 @@ class studentProfile extends StatefulWidget {
 class _studentProfile extends State<studentProfile> {
   double screenHeight = 0;
   double screenWidth = 0;
+  final users = FirebaseAuth.instance.currentUser;
+
   Color primary = const Color.fromARGB(255, 255, 255, 255);
   @override
   Widget build(BuildContext context) {
@@ -78,7 +80,17 @@ class _studentProfile extends State<studentProfile> {
                                       child: const Text(
                                         'No',
                                         style: TextStyle(
-                                            fontSize: 15, color: Colors.red),
+                                            fontSize: 15,
+                                            color: Color.fromARGB(
+                                                255, 56, 56, 154)),
+                                      ),
+                                      style: TextButton.styleFrom(
+                                        backgroundColor: Colors.white,
+                                        side: BorderSide(
+                                          color:
+                                              Color.fromARGB(255, 56, 56, 154),
+                                          width: 1,
+                                        ),
                                       ),
                                       onPressed: () {
                                         Navigator.of(context).pop();
@@ -88,9 +100,13 @@ class _studentProfile extends State<studentProfile> {
                                       child: const Text(
                                         'Yes',
                                         style: TextStyle(
-                                            fontSize: 15, color: Colors.green),
+                                            fontSize: 15, color: Colors.white),
                                       ),
-                                      onPressed: () {
+                                      style: TextButton.styleFrom(
+                                        backgroundColor:
+                                            Color.fromARGB(255, 56, 56, 154),
+                                      ),
+                                      onPressed: (){
                                         FirebaseAuth.instance.signOut();
                                       },
                                     ),
@@ -183,77 +199,6 @@ class _studentProfile extends State<studentProfile> {
               ),
             ),
           )
-        ],
-      ),
-    );
-  }
-
-  Widget navigatebar() {
-    return Container(
-      width: screenWidth - 60,
-      height: screenHeight / 12,
-      margin: EdgeInsets.all(20),
-      decoration: const BoxDecoration(
-          color: Color.fromARGB(255, 236, 242, 255),
-          borderRadius: BorderRadius.all(Radius.circular(20))),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          IconButton(
-            onPressed: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: ((context) => const CoursePage())));
-            },
-            icon: const Icon(Icons.book),
-            iconSize: 30,
-            color: const Color.fromARGB(255, 55, 56, 128),
-          ),
-          IconButton(
-            onPressed: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: ((context) => const HistoryPage())));
-            },
-            icon: const Icon(Icons.history),
-            iconSize: 30,
-            color: const Color.fromARGB(255, 55, 56, 128),
-          ),
-          IconButton(
-            onPressed: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: ((context) => const StudentHomePage())));
-            },
-            icon: const Icon(Icons.home),
-            iconSize: 30,
-            color: const Color.fromARGB(255, 55, 56, 128),
-          ),
-          IconButton(
-            onPressed: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: ((context) => const QRCodePage())));
-            },
-            icon: const Icon(Icons.qr_code),
-            iconSize: 30,
-            color: const Color.fromARGB(255, 55, 56, 128),
-          ),
-          IconButton(
-            onPressed: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: ((context) => const studentProfile())));
-            },
-            icon: const Icon(Icons.person),
-            iconSize: 30,
-            color: const Color.fromARGB(255, 55, 56, 128),
-          ),
         ],
       ),
     );
