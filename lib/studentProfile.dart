@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mamaimakhrap/CoursePage.dart';
 import 'package:mamaimakhrap/HistoryPage.dart';
@@ -90,7 +91,7 @@ class _studentProfile extends State<studentProfile> {
                                             fontSize: 15, color: Colors.green),
                                       ),
                                       onPressed: () {
-                                        Navigator.of(context).pop();
+                                        FirebaseAuth.instance.signOut();
                                       },
                                     ),
                                   ],
