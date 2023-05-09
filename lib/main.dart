@@ -12,6 +12,7 @@ import 'package:mamaimakhrap/InsideCoursePage.dart';
 import 'package:mamaimakhrap/InsideFeedbackPage.dart';
 import 'package:mamaimakhrap/NavbarTeacher.dart';
 import 'package:mamaimakhrap/QRCodePage.dart';
+import 'package:mamaimakhrap/QRCodeScreen.dart';
 import 'package:mamaimakhrap/ScanPage.dart';
 import 'package:mamaimakhrap/StudentHomePage.dart';
 import 'package:mamaimakhrap/TeacherHomePage.dart';

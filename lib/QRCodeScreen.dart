@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
-
 import 'model/QRCodeGenerator.dart';
 
 class QRCodeScreen extends StatefulWidget {
@@ -35,7 +34,9 @@ class _QRCodeScreenState extends State<QRCodeScreen> {
   }
 
   void _showQrCodeGeneratorDialog(BuildContext context) {
-    showDialog(
+    int _numberOfStudents = 0;
+    int _maxScan = 0;
+   showDialog(
       context: context,
       builder: (context) {
         return AlertDialog(
@@ -45,11 +46,24 @@ class _QRCodeScreenState extends State<QRCodeScreen> {
             children: [
               TextField(
                 decoration: InputDecoration(
-                  labelText: 'Enter student ID',
+                  labelText: 'Enter number of students',
                 ),
+                keyboardType: TextInputType.number,
                 onChanged: (value) {
                   setState(() {
-                    _qrData = value;
+                    _numberOfStudents = int.tryParse(value) ?? 0;
+                  });
+                },
+              ),
+              SizedBox(height: 16),
+              TextField(
+                decoration: InputDecoration(
+                  labelText: 'Enter maximum number of scans',
+                ),
+                keyboardType: TextInputType.number,
+                onChanged: (value) {
+                  setState(() {
+                    _maxScan = int.tryParse(value) ?? 0;
                   });
                 },
               ),
@@ -96,8 +110,7 @@ class _QRCodeScreenState extends State<QRCodeScreen> {
                   context,
                   MaterialPageRoute(
                     builder: (context) => QRCodeGenerator(
-                      data: _qrData,
-                      endTime: _endTime,
+                      data: '$_numberOfStudents:${_endTime.format(context)}:$_maxScan',studentNumber: '', maxScan: _maxScan,
                     ),
                   ),
                 );
@@ -108,5 +121,4 @@ class _QRCodeScreenState extends State<QRCodeScreen> {
         );
       },
     );
-  }
-}
+  }}
